@@ -7,7 +7,7 @@ import { TechnologiesCard } from "./components/TechnologiesCard";
 
 export default function Home() {
   return (
-    <main className="m-10 mt-20 grid justify-center">
+    <main className="m-10 grid justify-center">
       <ProfileCard />
       <div className="md:flex md:mx-auto md:items-center grid">
         <GithubCard />

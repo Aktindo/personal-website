@@ -23,7 +23,7 @@ export const GithubCard: FC<IProps> = (props) => {
             </p>
             <h4
               className={
-                "text-white font-medium mt-2 opacity-100 " +
+                "text-white text-left font-medium mt-2 opacity-100 " +
                 merriweather.className
               }
             >
