@@ -66,22 +66,22 @@ export const ProfileCard: FC<IProps> = (props) => {
           <div className="flex justify-center items-center">
             <Image
               src={pfp}
-              className="w-16 md:w-24 rounded-full"
+              className="w-16 rounded-full"
               alt="Profile Picture"
               height="200"
               width="200"
             />
             <div className="ml-3 profile-card__main">
-              <p className={merriweather.className + " text-xl md:text-3xl"}>
+              <p className={merriweather.className + " text-xl md:text-2xl"}>
                 Akshit Singla
               </p>
-              <p className="text-primary text-sm md:text-lg font-bold">
+              <p className="text-primary text-sm md:text-base font-bold">
                 Full-stack developer / student
               </p>
             </div>
           </div>
           <div className="profile-card__bio mx-auto w-72 md:w-96 text-center mt-2">
-            <p className="text-sm md:text-lg font-bold">
+            <p className="text-sm md:text-base font-bold">
               I build scalable web-applications, design on the front-end and
               destroy my will to live.
             </p>

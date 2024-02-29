@@ -1,10 +1,18 @@
 "use client";
 
-import { Button, Card, CardBody, Slider, Image } from "@nextui-org/react";
-import React, { FC } from "react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Slider,
+  Image,
+  Progress,
+} from "@nextui-org/react";
+import React, { FC, useEffect } from "react";
 import { BiHeart } from "react-icons/bi";
 import { FaSpotify } from "react-icons/fa";
 import { useLanyard } from "react-use-lanyard";
+import { merriweather } from "../helpers/fonts";
 
 interface IProps {}
 
@@ -20,40 +28,84 @@ export const Spotify: FC<IProps> = (props) => {
 
   const lanyardData = lanyard.data?.data;
 
+  const { end, start } = lanyardData?.spotify?.timestamps || {};
+
+  const endTime = new Date(end || 0);
+  const startTime = new Date(start || 0);
+
+  function timeDifference(date1: Date, date2: Date) {
+    var difference = date1.getTime() - date2.getTime();
+    var minutesDifference = Math.floor(difference / 1000 / 60);
+    difference -= minutesDifference * 1000 * 60;
+
+    var secondsDifference = Math.floor(difference / 1000);
+
+    return `${minutesDifference}:${
+      secondsDifference < 10 ? `0${secondsDifference}` : secondsDifference
+    }`;
+  }
+
+  useEffect(() => console.log(lanyardData), [lanyardData]);
+
   return !lanyard.isValidating && lanyardData?.listening_to_spotify ? (
     <div>
       <Card
-        isBlurred
-        className="border-none bg-background/60 dark:bg-default-100/50 md:ml-16 max-w-[610px]"
+        className="border-none bg-[#1DB954] bg-opacity-50 md:ml-16 max-w-xl"
         shadow="sm"
       >
         <CardBody>
-          <div className="grid grid-cols-12 gap-4 items-center justify-center">
-            <div className="relative col-span-4">
+          <div className="grid grid-cols-12 md:grid-cols-10 gap-4 items-center justify-center">
+            <div className="relative col-span-4 md:col-span-2">
+              <p className="font-bold mb-3 w-48 flex items-center text-xs md:text-sm uppercase text-foreground/90">
+                <FaSpotify size="24" className="mr-1.5" /> Listening to Spotify
+              </p>
               <Image
                 alt="Album cover"
-                className="object-cover"
-                shadow="md"
+                className="object-cover w-30 h-24"
                 src={lanyardData.spotify?.album_art_url}
                 width="100%"
               />
             </div>
 
-            <div className="flex flex-col col-span-8">
-              <div className="flex justify-between items-start">
+            <div className="flex flex-col col-span-8 mt-auto">
+              <div>
+                <div className="flex flex-col mt-3 gap-1">
+                  <Progress
+                    aria-label="Music progress"
+                    classNames={{
+                      track: "bg-default-500/30",
+                      indicator: "bg-white",
+                    }}
+                    className=""
+                    isIndeterminate
+                    size="sm"
+                  />
+                  <div className="flex justify-between">
+                    <p className="text-small text-foreground/50">00:00</p>
+                    <p className="text-small">
+                      {timeDifference(endTime, startTime)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-between items-start whitespace-nowrap text-ellipsis overflow-x-hidden">
                 <div className="flex flex-col gap-0">
-                  <p className="flex items-center font-bold text-xs md:text-sm uppercase text-foreground/90">
-                    <FaSpotify size="24" className="mr-1.5" /> Listening to
-                    Spotify
-                  </p>
-                  <h1 className="text-large font-medium md:mt-20">
+                  <p
+                    className={`md:text-large font-medium ${merriweather.className}`}
+                  >
                     {lanyardData.spotify?.song}
-                  </h1>
-                  <p className="text-small mt-1 text-foreground/80">
-                    On {lanyardData.spotify?.album}
                   </p>
-                  <p className="text-small text-foreground/80">
-                    By {lanyardData.spotify?.artist}
+                  <p className="text-xs md:text-small text-foreground/80">
+                    On{" "}
+                    <span className="font-medium">
+                      {lanyardData.spotify?.album}
+                    </span>
+                  </p>
+                  <p className="text-xs md:text-small text-foreground/80">
+                    By{" "}
+                    <span className="font-medium">
+                      {lanyardData.spotify?.artist}
+                    </span>
                   </p>
                 </div>
               </div>
