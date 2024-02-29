@@ -14,7 +14,7 @@ interface IProps {}
 
 export const GithubCard: FC<IProps> = (props) => {
   return (
-    <div>
+    <div className="mx-10 md:mx-0">
       <a href="https://github.com/Aktindo" target="_blank">
         <Card isPressable className="mt-10 h-[300px]">
           <CardHeader className="absolute z-10 flex-col bg-black bg-opacity-80 !items-start">

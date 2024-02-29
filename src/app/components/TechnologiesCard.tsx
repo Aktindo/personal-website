@@ -30,8 +30,8 @@ interface IProps {}
 
 export const TechnologiesCard: FC<IProps> = (props) => {
   return (
-    <div>
-      <Card className="mt-10 md:ml-10 mx-auto w-96 h-[300px] bg-zinc-950">
+    <div className="mx-10 md:mx-0">
+      <Card className="mt-10 md:ml-10 h-[300px] bg-background">
         <CardHeader className="z-10 flex-col text-primary bg-primary bg-opacity-20 !items-start">
           <p className="text-tiny flex items-center opacity-100 uppercase font-bold">
             Technologies
@@ -42,25 +42,27 @@ export const TechnologiesCard: FC<IProps> = (props) => {
             What I use to create next-gen apps.
           </h4>
         </CardHeader>
-        <CardBody className="grid grid-cols-6 grid-rows-6 gap-y-5 text-primary">
-          <BiLogoJavascript size="35" />
-          <BiLogoTypescript size="35" />
-          <FaHtml5 size="35" />
-          <FaCss3Alt size="35" />
-          <FaJava size="35" />
-          <SiMongodb size="35" />
-          <FaMarkdown size="35" />
-          <SiPostman size="35" />
-          <SiExpress size="35" />
-          <FaReact size="35" />
-          <SiNextdotjs size="35" />
-          <SiNextui size="35" />
-          <SiElectron size="35" />
-          <SiPug size="35" />
-          <SiTailwindcss size="35" />
-          <FiFigma size="35" />
-          <SiArduino size="35" />
-        </CardBody>
+        <div className="mt-5 ml-2 h-full">
+          <CardBody className="grid grid-cols-6 justify-center grid-rows-6 gap-y-5 text-primary">
+            <BiLogoJavascript size="35" />
+            <BiLogoTypescript size="35" />
+            <FaHtml5 size="35" />
+            <FaCss3Alt size="35" />
+            <FaJava size="35" />
+            <SiMongodb size="35" />
+            <FaMarkdown size="35" />
+            <SiPostman size="35" />
+            <SiExpress size="35" />
+            <FaReact size="35" />
+            <SiNextdotjs size="35" />
+            <SiNextui size="35" />
+            <SiElectron size="35" />
+            <SiPug size="35" />
+            <SiTailwindcss size="35" />
+            <FiFigma size="35" />
+            <SiArduino size="35" />
+          </CardBody>
+        </div>
       </Card>
     </div>
   );
