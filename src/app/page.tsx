@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="m-10 mt-20 grid justify-center">
       <ProfileCard />
-      <div className="md:flex mx-auto items-center grid justify-center">
+      <div className="md:flex mx-10 md:mx-auto items-center grid justify-center">
         <GithubCard />
         <TechnologiesCard />
       </div>

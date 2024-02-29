@@ -59,7 +59,7 @@ export const ProfileCard: FC<IProps> = (props) => {
     return `${hoursIST}:${minutesIST}`;
   };
   return (
-    <div className="profile-card max-w-96 mx-auto">
+    <div className="profile-card max-w-96 mx-10 md:mx-auto">
       <div className="flex justify-center items-center">
         <Image
           src={pfp}
