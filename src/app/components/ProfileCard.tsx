@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { FC } from "react";
 import pfp from "../images/pfp.jpg";
-import { merriweather } from "../layout";
+import { merriweather } from "../helpers/fonts";
 import { useLanyard } from "react-use-lanyard";
 import { Presence } from "./Presence";
 import { FaDiscord, FaGithub, FaInstagram } from "react-icons/fa";
@@ -87,8 +87,8 @@ export const ProfileCard: FC<IProps> = (props) => {
         <p className="flex items-center font-bold ml-2">{getTime()} IST</p>
       </div>
       <div className="socials flex justify-center items-center mt-5">
-        {socialsList.map((social) => (
-          <Tooltip showArrow content={social.name}>
+        {socialsList.map((social, i) => (
+          <Tooltip key={i} showArrow content={social.name}>
             <Link href={social.url} target="_blank">
               <Button
                 className="mr-2"

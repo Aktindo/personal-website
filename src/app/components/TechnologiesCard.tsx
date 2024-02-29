@@ -1,6 +1,5 @@
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import React, { FC } from "react";
-import { merriweather } from "../layout";
 import Image from "next/image";
 import { DiJavascript } from "react-icons/di";
 import { MdJavascript } from "react-icons/md";
@@ -20,6 +19,7 @@ import { BiLogoJavascript, BiLogoTypescript } from "react-icons/bi";
 import { FaCss3, FaJava, FaReact } from "react-icons/fa6";
 import { FaCss3Alt, FaHtml5, FaMarkdown } from "react-icons/fa";
 import { FiFigma } from "react-icons/fi";
+import { merriweather } from "../helpers/fonts";
 
 interface IProps {}
 

@@ -2,7 +2,7 @@ import { Card, CardHeader } from "@nextui-org/react";
 import Image from "next/image";
 import React, { FC } from "react";
 import { FaGithub } from "react-icons/fa6";
-import { merriweather } from "../layout";
+import { merriweather } from "../helpers/fonts";
 import codeGif from "../images/code.gif";
 
 interface IProps {}
