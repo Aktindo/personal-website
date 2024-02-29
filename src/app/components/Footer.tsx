@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { FiMoon, FiSun } from "react-icons/fi";
 
@@ -16,8 +16,12 @@ export const Footer: FC<IProps> = (props) => {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   const getTheme = () => {
-    return localStorage.getItem("theme") || "dark";
+    const theme: "light" | "dark" =
+      (localStorage.getItem("theme") as "light" | "dark") || "dark";
+    setTheme(theme);
   };
+
+  useEffect(() => getTheme(), []);
 
   const changeTheme = () => {
     document.getElementsByTagName("html")[0].setAttribute("class", theme);
@@ -40,7 +44,7 @@ export const Footer: FC<IProps> = (props) => {
             changeTheme();
           }}
         >
-          {getTheme() == "light" ? <FiMoon size="24" /> : <FiSun size="24" />}
+          {theme == "light" ? <FiMoon size="24" /> : <FiSun size="24" />}
         </Button>
       </div>
     </main>
