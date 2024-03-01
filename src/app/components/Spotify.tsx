@@ -8,7 +8,7 @@ import {
   Image,
   Progress,
 } from "@nextui-org/react";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { BiHeart } from "react-icons/bi";
 import { FaSpotify } from "react-icons/fa";
 import { useLanyard } from "react-use-lanyard";
@@ -22,9 +22,11 @@ interface IProps {}
  **/
 
 export const Spotify: FC<IProps> = (props) => {
-  const lanyard = useLanyard({
+  let lanyard = useLanyard({
     userId: "683879319558291539",
   });
+  const [now, setNow] = useState<any>(0);
+  const [dateNow, setDateNow] = useState<Date>();
 
   const lanyardData = lanyard.data?.data;
 
@@ -32,6 +34,7 @@ export const Spotify: FC<IProps> = (props) => {
 
   const endTime = new Date(end || 0);
   const startTime = new Date(start || 0);
+  const currentTime = new Date();
 
   function timeDifference(date1: Date, date2: Date) {
     var difference = date1.getTime() - date2.getTime();
@@ -45,7 +48,22 @@ export const Spotify: FC<IProps> = (props) => {
     }`;
   }
 
-  useEffect(() => console.log(lanyardData), [lanyardData]);
+  useEffect(() => {
+    const progressInterval = setInterval(() => {
+      if (currentTime.getTime() < endTime.getTime()) {
+        setNow(timeDifference(currentTime, startTime));
+        setDateNow(currentTime);
+      } else if (!lanyard.isValidating && lanyardData?.listening_to_spotify) {
+        window.location.reload();
+      }
+    }, 1000);
+
+    return () => {
+      if (progressInterval) {
+        clearInterval(progressInterval);
+      }
+    };
+  });
 
   return !lanyard.isValidating && lanyardData?.listening_to_spotify ? (
     <div>
@@ -69,19 +87,26 @@ export const Spotify: FC<IProps> = (props) => {
 
             <div className="flex flex-col col-span-8 mt-auto">
               <div>
-                <div className="flex flex-col mt-3 gap-1">
+                <div className="flex flex-col gap-1">
                   <Progress
                     aria-label="Music progress"
                     classNames={{
                       track: "bg-default-500/30",
                       indicator: "bg-white",
                     }}
-                    className=""
-                    isIndeterminate
+                    value={Number(
+                      (
+                        ((currentTime.getTime() - startTime.getTime()) /
+                          (endTime.getTime() - startTime.getTime())) *
+                        100
+                      ).toFixed(2)
+                    )}
                     size="sm"
                   />
                   <div className="flex justify-between">
-                    <p className="text-small text-foreground/50">00:00</p>
+                    <p className="text-small text-foreground/50">
+                      {now ? now : "00:00"}
+                    </p>
                     <p className="text-small">
                       {timeDifference(endTime, startTime)}
                     </p>

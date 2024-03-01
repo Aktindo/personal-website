@@ -2,7 +2,6 @@ import Image from "next/image";
 import React, { FC } from "react";
 import pfp from "../images/pfp.jpg";
 import { merriweather } from "../helpers/fonts";
-import { useLanyard } from "react-use-lanyard";
 import { Presence } from "./Presence";
 import { FaDiscord, FaGithub, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
