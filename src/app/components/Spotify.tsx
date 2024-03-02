@@ -56,7 +56,7 @@ export const Spotify: FC<IProps> = (props) => {
         setNow(timeDifference(currentTime, startTime));
         setDateNow(currentTime);
       } else if (!lanyard.isValidating && lanyardData?.listening_to_spotify) {
-        router.refresh();
+        window.location.reload();
       }
     }, 1000);
 
