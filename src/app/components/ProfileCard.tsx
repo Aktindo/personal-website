@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import pfp from "../images/pfp.jpg";
 import { merriweather } from "../helpers/fonts";
 import { Presence } from "./Presence";
@@ -40,24 +40,6 @@ const socialsList = [
 ];
 
 export const ProfileCard: FC<IProps> = (props) => {
-  const getTime = () => {
-    const currentTime = new Date();
-
-    const currentOffset = currentTime.getTimezoneOffset();
-
-    const ISTOffset = 330; // IST offset UTC +5:30
-
-    const ISTTime = new Date(
-      currentTime.getTime() + (ISTOffset + currentOffset) * 60000
-    );
-
-    // ISTTime now represents the time in IST coordinates
-
-    const hoursIST = ISTTime.getHours();
-    const minutesIST = ISTTime.getMinutes();
-
-    return `${hoursIST}:${minutesIST}`;
-  };
   return (
     <div className="profile-card mx-10 md:mx-auto">
       <div className="md:flex md:items-center md:justify-center">
@@ -87,8 +69,6 @@ export const ProfileCard: FC<IProps> = (props) => {
           </div>
           <div className="profile-card__status text-sm md:text-base flex justify-center items-center mt-5">
             <Presence />
-            <div className="presence bg-gray-700 rounded-full w-2 h-2 ml-2"></div>{" "}
-            <p className="flex items-center font-bold ml-2">{getTime()} IST</p>
           </div>
         </div>
         <div className="my-5 spotify">
