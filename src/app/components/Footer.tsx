@@ -19,13 +19,19 @@ export const Footer: FC<IProps> = (props) => {
     const theme: "light" | "dark" =
       (localStorage.getItem("theme") as "light" | "dark") || "dark";
     setTheme(theme);
+
+    document.getElementsByTagName("html")[0].setAttribute("class", theme);
   };
 
   useEffect(() => getTheme(), []);
 
   const changeTheme = () => {
-    document.getElementsByTagName("html")[0].setAttribute("class", theme);
-    localStorage.setItem("theme", theme);
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+
+    document.getElementsByTagName("html")[0].setAttribute("class", newTheme);
+    localStorage.setItem("theme", newTheme);
+    console.log(theme);
   };
 
   return (
@@ -40,9 +46,9 @@ export const Footer: FC<IProps> = (props) => {
           variant="flat"
           isIconOnly
           onPress={() => {
-            setTheme(theme == "light" ? "dark" : "light");
             changeTheme();
           }}
+          aria-label="Theme changer"
         >
           {theme == "light" ? <FiMoon size="24" /> : <FiSun size="24" />}
         </Button>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { FC } from "react";
 import { FaGithub } from "react-icons/fa6";
 import { merriweather } from "../helpers/fonts";
-import codeGif from "../images/code.gif";
+import codeGif from "../images/code.webp";
 
 interface IProps {}
 
@@ -17,13 +17,13 @@ export const GithubCard: FC<IProps> = (props) => {
     <div className="mx-10 md:mx-0">
       <a href="https://github.com/Aktindo" target="_blank">
         <Card isPressable className="mt-10 h-[300px]">
-          <CardHeader className="absolute z-10 flex-col bg-black bg-opacity-80 !items-start">
-            <p className="text-tiny flex items-center text-white opacity-100 uppercase font-bold">
+          <CardHeader className="absolute z-10 flex-col bg-background bg-opacity-80 !items-start">
+            <p className="text-tiny flex items-center text-foreground opacity-100 uppercase font-bold">
               <FaGithub size="20" className="mr-1" /> GitHub
             </p>
             <h4
               className={
-                "text-white text-left font-medium mt-2 opacity-100 " +
+                "text-foreground text-left font-medium mt-2 opacity-100 " +
                 merriweather.className
               }
             >

@@ -79,12 +79,13 @@ export const ProfileCard: FC<IProps> = (props) => {
       <div className="socials flex justify-center items-center mt-5">
         {socialsList.map((social, i) => (
           <Tooltip key={i} showArrow content={social.name}>
-            <Link href={social.url} target="_blank">
+            <Link href={social.url} target="_blank" aria-label={social.url}>
               <Button
                 className="mr-2"
                 color="primary"
                 isIconOnly
                 variant="flat"
+                aria-label={social.name}
               >
                 {social.icon}
               </Button>

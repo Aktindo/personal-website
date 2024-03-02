@@ -13,6 +13,7 @@ import { BiHeart } from "react-icons/bi";
 import { FaSpotify } from "react-icons/fa";
 import { useLanyard } from "react-use-lanyard";
 import { merriweather } from "../helpers/fonts";
+import { useRouter } from "next/navigation";
 
 interface IProps {}
 
@@ -27,6 +28,7 @@ export const Spotify: FC<IProps> = (props) => {
   });
   const [now, setNow] = useState<any>(0);
   const [dateNow, setDateNow] = useState<Date>();
+  const router = useRouter();
 
   const lanyardData = lanyard.data?.data;
 
@@ -54,7 +56,7 @@ export const Spotify: FC<IProps> = (props) => {
         setNow(timeDifference(currentTime, startTime));
         setDateNow(currentTime);
       } else if (!lanyard.isValidating && lanyardData?.listening_to_spotify) {
-        window.location.reload();
+        router.refresh();
       }
     }, 1000);
 
