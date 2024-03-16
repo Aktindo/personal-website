@@ -15,7 +15,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={manrope.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <a href="https://fiverr.com/aktindo" target="_blank">
+            {" "}
+            <div className="relative mb-5 p-2 text-center top-0 w-full bg-success bg-opacity-60">
+              ⚡New! I am now accepting commissions on Fiverr!
+            </div>
+          </a>
+
+          {children}
+        </Providers>
       </body>
     </html>
   );

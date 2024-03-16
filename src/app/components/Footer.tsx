@@ -23,7 +23,9 @@ export const Footer: FC<IProps> = (props) => {
     document.getElementsByTagName("html")[0].setAttribute("class", theme);
   };
 
-  useEffect(() => getTheme(), []);
+  useEffect(() => {
+    getTheme();
+  }, []);
 
   const changeTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
